@@ -55,10 +55,10 @@
 /* USER CODE BEGIN PV */
 mainData_t mainData;
 LCDdisplay_t displayInfo;
-HCSR04_t hcsr04_1;
-HCSR04_t hcsr04_2;
-HCSR04_t hcsr04_3;
-HCSR04_t hcsr04_4;
+HCSR04_t hcsr04_1_LF;
+HCSR04_t hcsr04_2_RF;
+HCSR04_t hcsr04_3_LB;
+HCSR04_t hcsr04_4_RB;
 sg90_servo_t servo;
 PIDController pid = {10,5,3,0,180};
 
@@ -137,6 +137,7 @@ int main(void)
   while (1)
   {
 	  MainProgram();
+
 
     /* USER CODE END WHILE */
 
@@ -255,10 +256,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
-	if (htim == hcsr04_1.htim_echo)
+	if (htim == hcsr04_1_LF.htim_echo)
 	{
-		HCSR04_interrupt_handler(&hcsr04_1);
-		if (HCSR04_CalculateResultFloat(&hcsr04_1, &mainData.Distance.leftFront) != HCSR04_OK)
+		HCSR04_interrupt_handler(&hcsr04_1_LF);
+		if (HCSR04_CalculateResultFloat(&hcsr04_1_LF, &mainData.Distance.leftFront) != HCSR04_OK)
 		{
 			mainData.Errors.alarmState = true;
 			mainData.Errors.allErrors++;
@@ -271,10 +272,10 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 		}
 	}
 
-	if (htim == hcsr04_2.htim_echo)
+	if (htim == hcsr04_2_RF.htim_echo)
 	{
-		HCSR04_interrupt_handler(&hcsr04_2);
-		if (HCSR04_CalculateResultFloat(&hcsr04_2, &mainData.Distance.rightFront)!= HCSR04_OK)
+		HCSR04_interrupt_handler(&hcsr04_2_RF);
+		if (HCSR04_CalculateResultFloat(&hcsr04_2_RF, &mainData.Distance.rightFront)!= HCSR04_OK)
 		{
 			mainData.Errors.alarmState = true;
 			mainData.Errors.allErrors++;
@@ -288,10 +289,10 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 	}
 
 
-	if (htim == hcsr04_3.htim_echo)
+	if (htim == hcsr04_3_LB.htim_echo)
 	{
-		HCSR04_interrupt_handler(&hcsr04_3);
-		if (HCSR04_CalculateResultFloat(&hcsr04_3, &mainData.Distance.leftBack)!= HCSR04_OK)
+		HCSR04_interrupt_handler(&hcsr04_3_LB);
+		if (HCSR04_CalculateResultFloat(&hcsr04_3_LB, &mainData.Distance.leftBack)!= HCSR04_OK)
 		{
 			mainData.Errors.alarmState = true;
 			mainData.Errors.allErrors++;
@@ -304,10 +305,10 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 		}
 	}
 
-	if (htim == hcsr04_4.htim_echo)
+	if (htim == hcsr04_4_RB.htim_echo)
 	{
-		HCSR04_interrupt_handler(&hcsr04_4);
-		if (HCSR04_CalculateResultFloat(&hcsr04_4, &mainData.Distance.rightBack)!= HCSR04_OK)
+		HCSR04_interrupt_handler(&hcsr04_4_RB);
+		if (HCSR04_CalculateResultFloat(&hcsr04_4_RB, &mainData.Distance.rightBack)!= HCSR04_OK)
 		{
 			mainData.Errors.alarmState = true;
 			mainData.Errors.allErrors++;

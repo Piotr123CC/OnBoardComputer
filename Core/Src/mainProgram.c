@@ -22,10 +22,10 @@ struct lcdDisp disp;
 
 extern mainData_t mainData;
 
-extern HCSR04_t hcsr04_1;
-extern HCSR04_t hcsr04_2;
-extern HCSR04_t hcsr04_3;
-extern HCSR04_t hcsr04_4;
+extern HCSR04_t hcsr04_1_LF;
+extern HCSR04_t hcsr04_2_RF;
+extern HCSR04_t hcsr04_3_LB;
+extern HCSR04_t hcsr04_4_RB;
 
 extern sg90_servo_t servo;
 
@@ -376,28 +376,28 @@ void turnOnDistanceSensors()
 {
 	mainData.disanceSensorsState = true;
 	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_SET);
-	HCSR04_Init(&hcsr04_1,
+	HCSR04_Init(&hcsr04_1_LF,
 		  &HCSR04_1_TIM_TRIGGER,
 		  HCSR04_1_TRIGGER_CHANNEL,
 		  &HCSR04_1_TIM_ECHO,
 		  HCSR04_1_ECHO_CHANNEL_START,
 		  HCSR04_1_ECHO_CHANNEL_STOP);
 
-	HCSR04_Init(&hcsr04_2,
+	HCSR04_Init(&hcsr04_2_RF,
 		  &HCSR04_2_TIM_TRIGGER,
 		  HCSR04_2_TRIGGER_CHANNEL,
 		  &HCSR04_2_TIM_ECHO,
 		  HCSR04_2_ECHO_CHANNEL_START,
 		  HCSR04_2_ECHO_CHANNEL_STOP);
 
-	HCSR04_Init(&hcsr04_3,
+	HCSR04_Init(&hcsr04_3_LB,
 		  &HCSR04_3_TIM_TRIGGER,
 		  HCSR04_3_TRIGGER_CHANNEL,
 		  &HCSR04_3_TIM_ECHO,
 		  HCSR04_3_ECHO_CHANNEL_START,
 		  HCSR04_3_ECHO_CHANNEL_STOP);
 
-	HCSR04_Init(&hcsr04_4,
+	HCSR04_Init(&hcsr04_4_RB,
 		  &HCSR04_4_TIM_TRIGGER,
 		  HCSR04_4_TRIGGER_CHANNEL,
 		  &HCSR04_4_TIM_ECHO,
@@ -409,28 +409,28 @@ void turnOffDistanceSensors()
 {
 	mainData.disanceSensorsState = false;
 	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
-	HCSR04_DeInit(&hcsr04_1,
+	HCSR04_DeInit(&hcsr04_1_LF,
 		  &HCSR04_1_TIM_TRIGGER,
 		  HCSR04_1_TRIGGER_CHANNEL,
 		  &HCSR04_1_TIM_ECHO,
 		  HCSR04_1_ECHO_CHANNEL_START,
 		  HCSR04_1_ECHO_CHANNEL_STOP);
 
-	HCSR04_DeInit(&hcsr04_2,
+	HCSR04_DeInit(&hcsr04_2_RF,
 		  &HCSR04_2_TIM_TRIGGER,
 		  HCSR04_2_TRIGGER_CHANNEL,
 		  &HCSR04_2_TIM_ECHO,
 		  HCSR04_2_ECHO_CHANNEL_START,
 		  HCSR04_2_ECHO_CHANNEL_STOP);
 
-	HCSR04_DeInit(&hcsr04_3,
+	HCSR04_DeInit(&hcsr04_3_LB,
 		  &HCSR04_3_TIM_TRIGGER,
 		  HCSR04_3_TRIGGER_CHANNEL,
 		  &HCSR04_3_TIM_ECHO,
 		  HCSR04_3_ECHO_CHANNEL_START,
 		  HCSR04_3_ECHO_CHANNEL_STOP);
 
-	HCSR04_DeInit(&hcsr04_4,
+	HCSR04_DeInit(&hcsr04_4_RB,
 		  &HCSR04_4_TIM_TRIGGER,
 		  HCSR04_4_TRIGGER_CHANNEL,
 		  &HCSR04_4_TIM_ECHO,
